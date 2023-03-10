@@ -67,6 +67,14 @@ class MuButtonHandler implements EventHandler<ActionEvent> {
 
         // transfer the message from the text field to the label
         // System.out.println(ShowMessage.tfMessage.getText());
-        ShowMessage.lblMessage.setText(ShowMessage.tfMessage.getText());
+
+        // step 1: fetch the message from the text field
+        String messageFromTextField = ShowMessage.tfMessage.getText();
+
+        // step 2: set the fetched message in the label
+        ShowMessage.lblMessage.setText(messageFromTextField);
+
+        // both the steps combined in a single line of code
+        // ShowMessage.lblMessage.setText(ShowMessage.tfMessage.getText());
     }
 }
