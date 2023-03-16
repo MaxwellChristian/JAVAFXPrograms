@@ -58,6 +58,13 @@ public class SplitPaneDemo extends Application {
         stage.show();
 
 
+        // toggle group for all radio buttons
+        ToggleGroup rbGroup = new ToggleGroup();
+        rbUS.setToggleGroup(rbGroup);
+        rbCA.setToggleGroup(rbGroup);
+        rbUK.setToggleGroup(rbGroup);
+
+
 
     }
 }
