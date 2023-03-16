@@ -43,7 +43,8 @@ public class SplitPaneDemo extends Application {
         splitPaneForButtons.getItems().add(spCA);
         splitPaneForButtons.getItems().add(spUK);
 
-        splitPaneForButtons.getItems().add(new ScrollPane(new TextArea("Welcome to description of companies")));
+        TextArea taDescription = new TextArea("Description is displayed here");
+        splitPaneForButtons.getItems().add(new ScrollPane(taDescription));
 
         SplitPane splitPane = new SplitPane();
         splitPane.getItems().add(vBox);
@@ -65,6 +66,11 @@ public class SplitPaneDemo extends Application {
         rbUK.setToggleGroup(rbGroup);
 
 
+        rbCA.setOnAction(actionEvent -> taDescription.setText("This is CANADA"));
+
+        rbUS.setOnAction(actionEvent -> taDescription.setText("This is United States of America"));
+
+        rbUK.setOnAction(actionEvent -> taDescription.setText("This is United Kingdom"));
 
     }
 }
