@@ -13,64 +13,56 @@ public class SplitPaneDemo extends Application {
     public void start(Stage stage) throws Exception {
 
 
-        VBox vBox = new VBox(10);
+        // using a split pane to have multiple areas on a scene with different controls
 
-        // Radio Button with country names
-        RadioButton rbUS = new RadioButton("US");
-        RadioButton rbCA = new RadioButton("CA");
-        RadioButton rbUK = new RadioButton("UK");
-
-        vBox.getChildren().add(rbUS);
-        vBox.getChildren().add(rbCA);
-        vBox.getChildren().add(rbUK);
-
-        // Split pane
-        SplitPane splitPaneForButtons = new SplitPane();
-        splitPaneForButtons.setOrientation(Orientation.VERTICAL);
-
-        // Buttons for country description
-
-        StackPane spUS = new StackPane();
-        spUS.getChildren().add(new Button("US Description"));
-
-        StackPane spCA = new StackPane();
-        spCA.getChildren().add(new Button("CA Description"));
-
-        StackPane spUK = new StackPane();
-        spUK.getChildren().add(new Button("UK Description"));
-
-        splitPaneForButtons.getItems().add(spUS);
-        splitPaneForButtons.getItems().add(spCA);
-        splitPaneForButtons.getItems().add(spUK);
-
-        TextArea taDescription = new TextArea("Description is displayed here");
-        splitPaneForButtons.getItems().add(new ScrollPane(taDescription));
-
+        // create the split pane
         SplitPane splitPane = new SplitPane();
-        splitPane.getItems().add(vBox);
-        splitPane.getItems().add(splitPaneForButtons);
 
-        // scene
+        // create a scene
         Scene scene = new Scene(splitPane, 300, 250);
 
-        stage.setScene(scene);
-        stage.setTitle("Split pane demo");
 
+        // add the content to the split pane
+
+        // create a container with 3 radio buttons
+        VBox vBox = new VBox(10);
+
+        // create radio buttons and add to the vbox
+        RadioButton rbCA = new RadioButton("CA");
+        RadioButton rbUS = new RadioButton("US");
+        RadioButton rbUK = new RadioButton("UK");
+
+        // add the radio buttons to the vbox
+        vBox.getChildren().add(rbCA);
+        vBox.getChildren().add(rbUS);
+        vBox.getChildren().add(rbUK);
+
+        // add all the radio buttons to a group so that only one can be selected
+        ToggleGroup rbGroup = new ToggleGroup();
+        rbCA.setToggleGroup(rbGroup);
+        rbUS.setToggleGroup(rbGroup);
+        rbUK.setToggleGroup(rbGroup);
+
+        // add this vbox to the spit pane
+        splitPane.getItems().add(vBox);
+
+        // create a new container with buttons and a text area
+        TextArea taDescription = new TextArea("Description is displayed here");
+        splitPane.getItems().add(new ScrollPane(taDescription));
+
+        // set the scene in the stage
+        stage.setScene(scene);
+
+        // set the properties of the stage
+        stage.setTitle("Split Pane Demo");
+
+        // show the stage
         stage.show();
 
 
-        // toggle group for all radio buttons
-        ToggleGroup rbGroup = new ToggleGroup();
-        rbUS.setToggleGroup(rbGroup);
-        rbCA.setToggleGroup(rbGroup);
-        rbUK.setToggleGroup(rbGroup);
-
-
+        // add actions to the radio buttons so that appropriate text is displayed in the text area
         rbCA.setOnAction(actionEvent -> taDescription.setText("This is CANADA"));
-
-        rbUS.setOnAction(actionEvent -> taDescription.setText("This is United States of America"));
-
+        rbUS.setOnAction(actionEvent -> taDescription.setText("This is United State of America"));
         rbUK.setOnAction(actionEvent -> taDescription.setText("This is United Kingdom"));
-
     }
 }
