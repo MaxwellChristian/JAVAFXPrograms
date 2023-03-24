@@ -18,7 +18,7 @@ import java.util.Date;
 public class MultiThreadServerDemo extends Application {
 
     // Text area for displaying contents
-    private TextArea ta = new TextArea();
+    private final TextArea ta = new TextArea();
 
     // Number a client
     private int clientNo = 0;
@@ -36,8 +36,9 @@ public class MultiThreadServerDemo extends Application {
             try {
                 // Create a server socket
                 ServerSocket serverSocket = new ServerSocket(8000);
-                ta.appendText("MultiThreadServer started at "
-                        + new Date() + '\n');
+                Platform.runLater( () -> ta.appendText("MultiThreadServer started at "
+                        + new Date() + '\n'));
+
 
                 while (true) {
                     // Listen for a new connection request
