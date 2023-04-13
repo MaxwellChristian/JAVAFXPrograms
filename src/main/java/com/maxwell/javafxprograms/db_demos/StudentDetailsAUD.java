@@ -77,6 +77,31 @@ public class StudentDetailsAUD extends Application {
     }
 
     private void updateStudent() {
+
+        String query = "update " +
+                " Students " +
+                " SET " +
+                    "FirstName = ?, " +
+                    "LastName = ? " +
+                " where " +
+                    "StudentID = ?";
+
+        try {
+
+            stmt = connection.prepareStatement(query);
+
+            stmt.setString(1, tfStudentFirstName.getText());
+            stmt.setString(2, tfStudentLastName.getText());
+            stmt.setString(3, tfStudentID.getText());
+
+            if(stmt.executeUpdate() != 0){
+                System.out.println(stmt.getUpdateCount() + " : Record modified");
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void addStudent() {
